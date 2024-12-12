@@ -35,7 +35,7 @@ library(visreg)
 
 
 
-setwd('E:\\ResearchProject\\Mizba')
+setwd('E:\\ResearchProject\\Mizba\\KAP Antibiotics')
 data_abur <- read.csv("KAP_ABU&R.csv")
 
 #Sex
@@ -369,8 +369,11 @@ model <- glm(relevel(factor(data_abur$KnowledgeCat), ref = "Poor")~
                relevel(factor(data_abur$Sex), ref = "Female")
              + relevel(factor(data_abur$Age), ref = "16-25 Years")
              + relevel(factor(data_abur$Education), ref = "Higher Secondary")
+             + relevel(factor(data_abur$study.area), ref = "Non-biology  Students")
+             + relevel(factor(data_abur$University.Types), ref = "Private")
              + relevel(factor(data_abur$Parents.have.Medical.Background), ref = "No")
-             + relevel(factor(data_abur$Home.town), ref = "Urban"),
+             + relevel(factor(data_abur$Home.town), ref = "Urban")
+             + relevel(factor(data_abur$Family.type), ref = "Extended "),
              family=binomial(link='logit'),data=data_abur)
 summary(model)
 exp(cbind(coef(model), confint(model)))
@@ -437,14 +440,16 @@ summary(c)
 #adjusted model
 model <- glm(relevel(factor(data_abur$AttitudeCat), ref = "Poor")~ 
                relevel(factor(data_abur$Sex), ref = "Female")
+             + relevel(factor(data_abur$Age), ref = "16-25 Years")
              + relevel(factor(data_abur$Education), ref = "Higher Secondary")
              + relevel(factor(data_abur$study.area), ref = "Non-biology  Students")
+             + relevel(factor(data_abur$University.Types), ref = "Private")
              + relevel(factor(data_abur$Parents.have.Medical.Background), ref = "No")
-             + relevel(factor(data_abur$Home.town), ref = "Urban"),
+             + relevel(factor(data_abur$Home.town), ref = "Urban")
+             + relevel(factor(data_abur$Family.type), ref = "Extended "),
              family=binomial(link='logit'),data=data_abur)
 summary(model)
 exp(cbind(coef(model), confint(model)))
-
 
 
 
@@ -497,13 +502,17 @@ round(prop.table(c,1)*100,2)
 summary(c)
 
 
+
 #adjusted model
 model <- glm(relevel(factor(data_abur$PracticeCat), ref = "Poor")~ 
                relevel(factor(data_abur$Sex), ref = "Female")
+             + relevel(factor(data_abur$Age), ref = "16-25 Years")
              + relevel(factor(data_abur$Education), ref = "Higher Secondary")
              + relevel(factor(data_abur$study.area), ref = "Non-biology  Students")
+             + relevel(factor(data_abur$University.Types), ref = "Private")
              + relevel(factor(data_abur$Parents.have.Medical.Background), ref = "No")
-             + relevel(factor(data_abur$Home.town), ref = "Urban"),
+             + relevel(factor(data_abur$Home.town), ref = "Urban")
+             + relevel(factor(data_abur$Family.type), ref = "Extended "),
              family=binomial(link='logit'),data=data_abur)
 summary(model)
 exp(cbind(coef(model), confint(model)))
